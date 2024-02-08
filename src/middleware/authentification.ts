@@ -3,7 +3,7 @@ import * as jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-export const authentification = (
+export const authentication = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -20,6 +20,6 @@ export const authentification = (
   if (!decode) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-  req[" currentUser"] = decode;
+  req["currentUser"] = decode;
   next();
 };

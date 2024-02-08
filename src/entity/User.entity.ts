@@ -23,6 +23,10 @@ export class User {
   @Column({ default: "user" })
   role: string;
 
+  @Column({ default: 100 })
+  points: number;
+
+
   @CreateDateColumn()
   createdAt: Date;
 

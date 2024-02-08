@@ -1,7 +1,7 @@
 {
-  "name": "restTye",
+  "name": "book_restapi",
   "version": "0.0.1",
-  "description": "Awesome project developed with TypeORM.",
+  "description": "Book Backend",
   "type": "commonjs",
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",

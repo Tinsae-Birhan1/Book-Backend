@@ -15,13 +15,13 @@ export class Book {
   title: string;
 
   @Column({ nullable: false })
-  description: string;
+  tags: string;
 
   @Column({ nullable: false })
-  author: string;
+  writer: string;
 
   @Column({ nullable: false })
-  year: number;
+  price: number;
 
   @Column()
   image: string;

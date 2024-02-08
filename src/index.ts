@@ -1,29 +1,26 @@
-import { AppDataSource } from "./data-source";
 import * as express from "express";
-import * as dotenv from "dotenv";
-import { Request, Response } from "express";
+import { AppDataSource } from "./data-source";
 import { userRouter } from "./routes/user.routes";
 import { bookRouter } from "./routes/book.routes";
-import "reflect-metadata";
 import { errorHandler } from "./middleware/errorHandler";
-dotenv.config();
 
 const app = express();
 app.use(express.json());
-const { PORT = 3000 } = process.env;
-app.use(errorHandler);
+
 app.use("/auth", userRouter);
 app.use("/api", bookRouter);
 
-app.get("*", (req: Request, res: Response) => {
-  res.status(505).json({ message: "Bad Request" });
+app.get("*", (req, res) => {
+  res.status(404).json({ message: "Not Found" });
 });
 
-AppDataSource.initialize()
-  .then(async () => {
-    app.listen(PORT, () => {
-      console.log("Server is running on http://localhost:" + PORT);
-    });
-    console.log("Data Source has been initialized!");
-  })
-  .catch((error) => console.log(error));
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+AppDataSource.initialize().then(() => {
+  console.log("Database initialized");
+});

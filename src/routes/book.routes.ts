@@ -1,23 +1,24 @@
 import * as express from "express";
-import { authentification } from "../middleware/authentification";
 import { BookController } from "../controllers/book.controllers";
+import { authentication } from "../middleware/authentification";
 import { authorization } from "../middleware/authorization";
 
-const Router = express.Router();
+const router = express.Router();
 
-Router.get("/books", BookController.getAllBooks);
-Router.post("/books", BookController.createBook);
+router.get("/books", BookController.getAllBooks);
+router.get("/books/:id", BookController.getBookById);
+router.post("/books", BookController.createBook);
 
-Router.put(
+router.put(
   "/books/:id",
-  authentification,
+  authentication,
   authorization(["admin"]),
   BookController.updateBook
 );
-Router.delete(
+router.delete(
   "/books/:id",
-  authentification,
+  authentication,
   authorization(["admin"]),
   BookController.deleteBook
 );
-export { Router as bookRouter };
+export { router as bookRouter };
