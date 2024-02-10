@@ -4,7 +4,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany
 } from "typeorm";
+import { Order } from "./orderEntity";
 
 @Entity({ name: "users" })
 export class User {
@@ -25,7 +27,9 @@ export class User {
 
   @Column({ default: 100 })
   points: number;
-
+  @OneToMany(() => Order, order => order.user)
+    orders: Order[];
+    
 
   @CreateDateColumn()
   createdAt: Date;

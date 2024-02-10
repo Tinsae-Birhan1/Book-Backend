@@ -8,6 +8,9 @@ export class Order1698321500514 implements MigrationInterface {
         "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
         "userId" uuid NOT NULL,
         "bookId" uuid NOT NULL,
+        "points" integer NOT NULL,
+        "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
+
         "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
         CONSTRAINT "PK_Orders" PRIMARY KEY ("id"),
         CONSTRAINT "FK_Orders_Users_userId" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE,

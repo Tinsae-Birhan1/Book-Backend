@@ -4,7 +4,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  OneToMany
 } from "typeorm";
+
+import { Order } from "./orderEntity";
 
 @Entity({ name: "books" })
 export class Book {
@@ -27,6 +30,10 @@ export class Book {
   image: string;
 
   
+
+  @OneToMany(() => Order, order => order.user)
+    orders: Order[];
+    
 
   @CreateDateColumn()
   createdAt: Date;

@@ -29,8 +29,8 @@ router.put(
 );
 router.delete(
   "/delete/:id",
-  authentication,
-  authorization(["admin"]),
+  // authentication,
+  // authorization(["admin"]),
   UserController.deleteUser
 );
 export { router as userRouter };
